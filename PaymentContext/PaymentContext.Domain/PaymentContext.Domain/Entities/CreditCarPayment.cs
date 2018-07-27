@@ -1,0 +1,27 @@
+﻿using PaymentContext.Domain.ValueObjects;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace PaymentContext.Domain.Entities
+{
+    public class CreditCarPayment : Payment
+    {
+        public CreditCarPayment(string cardNumber, string lastTransactionNumber, DateTime paidDate, DateTime expireDate, decimal total, decimal totalPaid, string payer, Document document, Address address, Email email) 
+            : base(paidDate, expireDate, total, totalPaid, payer, document, address, email)
+        {
+            CardNumber = cardNumber;
+            LastTransactionNumber = lastTransactionNumber;
+        }
+
+        public string CardHolderName { get; set; }
+
+        /// <summary>
+        /// Armazena somente os últimos 4 números
+        /// </summary>
+        public string CardNumber { get; private set; }
+        public string LastTransactionNumber { get; private set; }
+    }
+}
